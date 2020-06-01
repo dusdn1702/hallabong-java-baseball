@@ -12,7 +12,7 @@
     - 프로그램을 시작하는 메인 클래스
     Computer class
     - 게임을 시작하는 기능 (gameStart)
-    - 세자리 수를 만드는 기능 (makeGame)
+    - 랜덤 세자리 수를 만드는 기능 (makeGame)
     - 힌트를 출력하는 기능 (printHint)
     - 게임을 종료하는 기능 (isRight)
     - 재시작할지, 프로그램을 종료할지 고르는 기능 (AgainOrDone)
