@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Player.class
  * 게임을 하는 클래스
  *
- * @version     1.0     2020년 6월 1일
+ * @version     1.1     2020년 6월 2일
  * @author      조연우
  */
 public class Player {
@@ -25,24 +25,17 @@ public class Player {
 
     public char[] inputAnswer(){
         System.out.print("input three numbers : ");
-        //try{
             myAnswer = scan.nextLine();
-            if(!rangeOk(myAnswer)||!lengthOk(myAnswer)||!noSame(myAnswer)) {
+            if(!rangeOk(myAnswer)||(!lengthOk(myAnswer))||!noSame(myAnswer)) {
                 somethingWrong();
             }
-        //}catch (InputMismatchException e){
-        //    System.out.print("다시 입력해주세요.");
-        //    scan = new Scanner(System.in);
-        //    inputAnswer();
-        //    somethingWrong();
-        //}
         playerAnswer = myAnswer.toCharArray();
         return playerAnswer;
     }
     public boolean rangeOk(String s){
         char[] in = s.toCharArray();
-        for(int i=0;i<s.length();i++){
-            if(in[i]<1 || in[i]>9){
+        for(int i=0;i<3;i++){
+            if(in[i]<'1' || in[i]>'9'){
                 return false;
             }
         }
@@ -69,9 +62,6 @@ public class Player {
         System.out.println("input again");
         scan = new Scanner(System.in);
         inputAnswer();
-    }
-    public char[] getPlayerAnswer() {
-        return playerAnswer;
     }
 }
 

@@ -13,12 +13,15 @@
     Computer class
     - 게임을 시작하는 기능 (gameStart)
     - 랜덤 세자리 수를 만드는 기능 (makeGame)
+    - 새로운 게임 시작하는 기능 (newGame)
     - 힌트를 출력하는 기능 (printHint)
+    - ball 개수를 카운트하는 기능 (ballCount)
     - 게임을 종료하는 기능 (isRight)
     - 재시작할지, 프로그램을 종료할지 고르는 기능 (AgainOrDone)
     Player class
     - 3글자 입력받는 기능 (inputAnswer)
     - 1부터 9까지 범위 검사하는 기능 (rangeOk)
     - 세글자 맞는지 길이 검사하는 기능 (lengthOk)
+    - 중복된 숫자가 있는지 검사하는 기능 (noSame)
     - 문제가 있는 경우 에러 출력하는 기능 (somethingWrong)
     
