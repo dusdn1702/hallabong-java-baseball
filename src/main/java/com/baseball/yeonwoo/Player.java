@@ -1,5 +1,5 @@
 /*
- * Player.java            1.0.0       2020-06-01
+ * Player.java            1.2       2020-06-03
  *
  * Copyright (c) 2020 Yeonwoo Cho
  * ComputerScience, ProgrammingLanguage, Java, Seoul, KOREA
@@ -8,14 +8,13 @@
 
 package com.baseball.yeonwoo;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * Player.class
  * 게임을 하는 클래스
  *
- * @version     1.1     2020년 6월 2일
+ * @version     1.2     2020년 6월 3일
  * @author      조연우
  */
 public class Player {
@@ -26,32 +25,32 @@ public class Player {
     public char[] inputAnswer(){
         System.out.print("input three numbers : ");
             myAnswer = scan.nextLine();
-            if(!rangeOk(myAnswer)||(!lengthOk(myAnswer))||!noSame(myAnswer)) {
+            if(!rangeOk(myAnswer) || (!lengthOk(myAnswer)) || (!noSame(myAnswer))) {
                 somethingWrong();
             }
         playerAnswer = myAnswer.toCharArray();
         return playerAnswer;
     }
     public boolean rangeOk(String s){
-        char[] in = s.toCharArray();
-        for(int i=0;i<3;i++){
-            if(in[i]<'1' || in[i]>'9'){
+        char[] c = s.toCharArray();
+        for(int i=0; i<3; i++){
+            if((c[i]<'1') || (c[i]>'9')){
                 return false;
             }
         }
         return true;
     }
     public boolean lengthOk(String s){
-        if(s.length() !=3) {
+        if(s.length() != 3) {
             return false;
         }
         return true;
     }
     public boolean noSame(String s){
         char[] in = s.toCharArray();
-        for(int i=0;i<s.length()-1;i++){
-            for(int j=i+1;j<s.length();j++){
-                if(in[i]==in[j]){
+        for(int i=0; i<s.length()-1; i++){
+            for(int j=i+1; j<s.length(); j++){
+                if(in[i] == in[j]){
                     return false;
                 }
             }
