@@ -9,7 +9,6 @@
 package com.baseball.yeonwoo;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,11 +26,11 @@ public class Computer {
 
     public Player newPlayer;
 
-    public void gameStart(){    //처음 시작
+    protected void gameStart(){    //처음 시작
         makeAnswer();
     }
 
-    public void makeAnswer(){
+    private void makeAnswer(){
         Random random = new Random();
         String nowNum = "";
         for(int i=0; i<3; i++){
@@ -52,14 +51,14 @@ public class Computer {
         newGame();
     }
 
-    public void newGame(){  //새롭게 입력받는 부분
+    private void newGame(){  //새롭게 입력받는 부분
         newPlayer = new Player();
 
         input = newPlayer.inputAnswer();
         printHint();
     }
 
-    public void printHint(){    //입력에 대한 힌트 계산, 출력
+    private void printHint(){    //입력에 대한 힌트 계산, 출력
         int strike = 0;
         int ball = 0;
 
@@ -87,7 +86,7 @@ public class Computer {
         }
     }
 
-    public int ballCount(int i){
+    private int ballCount(int i){
         int b = 0;
         for(int j=0; j<3; j++){
             if(answer.get(i)==input.get(j)){
@@ -97,13 +96,13 @@ public class Computer {
         return b;
     }
 
-    public static void isRight(){
+    private static void isRight(){
         System.out.println("You Win! Game Finish");
         System.out.print("if you want restart-> 1 done -> 2 : ");
         againOrDone();
     }
 
-    public static void againOrDone(){
+    private static void againOrDone(){
         Scanner scan = new Scanner(System.in);
         int num = scan.nextInt();
         if(num == 1){

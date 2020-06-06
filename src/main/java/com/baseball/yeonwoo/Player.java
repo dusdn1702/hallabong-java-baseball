@@ -9,7 +9,6 @@
 package com.baseball.yeonwoo;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,7 +24,7 @@ public class Player {
     String myAnswer = "";
     ArrayList<Character> playerAnswer = new ArrayList<Character>();
 
-    public ArrayList<Character> inputAnswer(){
+    protected ArrayList<Character> inputAnswer(){
         System.out.print("input three numbers : ");
         myAnswer = scan.nextLine();
         if(!rangeOk(myAnswer) || (!lengthOk(myAnswer)) || (!noSame(myAnswer))) {
@@ -37,7 +36,7 @@ public class Player {
         return playerAnswer;
     }
 
-    public boolean rangeOk(String s){
+    private boolean rangeOk(String s){
         char[] c = s.toCharArray();
 
         for(int i=0; i<3; i++){
@@ -48,14 +47,14 @@ public class Player {
         return true;
     }
 
-    public boolean lengthOk(String s){
+    private boolean lengthOk(String s){
         if(s.length() != 3) {
             return false;
         }
         return true;
     }
 
-    public boolean noSame(String s){
+    private boolean noSame(String s){
         char[] in = s.toCharArray();
 
         for(int i=0; i<s.length()-1; i++){
@@ -68,7 +67,7 @@ public class Player {
         return true;
     }
 
-    public void somethingWrong(){
+    private void somethingWrong(){
         System.out.println("input again");
         scan = new Scanner(System.in);
         inputAnswer();
