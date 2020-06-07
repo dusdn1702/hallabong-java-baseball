@@ -21,7 +21,8 @@ import java.util.Scanner;
 
 public class Player {
     public static final int NUMBER_LENGTH = 3;
-    public static final int INITIALIZE = 0;
+    public static final int BOUNDARY_ONE = 49;      //'1'
+    public static final int BOUNDARY_NINE = 57;     //'9'
 
     String myAnswer = "";
 
@@ -47,7 +48,7 @@ public class Player {
         char[] tempMyAnswer = myAnswer.toCharArray();
 
         for (int findWrongNumberIndex = 0; findWrongNumberIndex < NUMBER_LENGTH; findWrongNumberIndex++) {
-            if ((tempMyAnswer[findWrongNumberIndex] < '1') || (tempMyAnswer[findWrongNumberIndex] > '9')) {
+            if ((tempMyAnswer[findWrongNumberIndex] < (char)BOUNDARY_ONE) || (tempMyAnswer[findWrongNumberIndex] > (char)BOUNDARY_NINE)) {
                 return true;
             }
         }

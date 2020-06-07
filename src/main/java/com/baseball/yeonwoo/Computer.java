@@ -27,7 +27,9 @@ public class Computer {
     private static final int PLAY_AGAIN = 1;
     private static final int GAME_DONE = 2;
     private static final int FINISH_GAME_STRIKES = 3;
-    private static final int COUNT_IS_ZERO = 2;
+    private static final int COUNT_IS_ZERO = 0;
+    private static final int BOUNDARY_NUMBER = 10;
+    private static final int NO_ZERO = 48;      //'0'
 
     public Player newPlayer;
 
@@ -47,8 +49,8 @@ public class Computer {
         String currentNumber = "";
         Random random = new Random();
         for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
-            String number = Integer.toString(random.nextInt(10));
-            if (number.equals("0")) {
+            String number = Integer.toString(random.nextInt(BOUNDARY_NUMBER));
+            if (number.equals((char)NO_ZERO)) {
                 generatingNumberIndex--;
             } else {
                 if (!currentNumber.contains(number)) {
