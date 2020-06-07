@@ -35,20 +35,20 @@ public class Computer {
     private void makeAnswer() {
         String currentNumber = "";
         Random random = new Random();
-        for (int i = 0; i < NUMBER_LENGTH; i++) {
+        for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
             String number = Integer.toString(random.nextInt(10));
             if (!number.equals(0)) {
                 if (!currentNumber.contains(number)) {
                     currentNumber += number;
                 } else {
-                    i--;
+                    generatingNumberIndex--;
                 }
             } else {
-                i--;
+                generatingNumberIndex--;
             }
         }
-        for (int i = 0; i < currentNumber.length(); i++) {
-            computerAnswer.add(currentNumber.charAt(i));
+        for (int storeNumberIndex = 0; storeNumberIndex < currentNumber.length(); storeNumberIndex++) {
+            computerAnswer.add(currentNumber.charAt(storeNumberIndex));
         }
         newGame();
     }
@@ -62,11 +62,11 @@ public class Computer {
     private void printHint() {    //입력에 대한 힌트 계산, 출력
         int strike = 0;
         int ball = 0;
-        for (int i = 0; i < NUMBER_LENGTH; i++) {
-            if (computerAnswer.get(i) == playerInput.get(i)) {
+        for (int findHintIndex = 0; findHintIndex < NUMBER_LENGTH; findHintIndex++) {
+            if (computerAnswer.get(findHintIndex) == playerInput.get(findHintIndex)) {
                 strike++;
             } else {
-                ball += ballCount(i);
+                ball += ballCount(findHintIndex);
             }
         }
         if (strike == 3) {
@@ -86,14 +86,14 @@ public class Computer {
         }
     }
 
-    private int ballCount(int i) {
-        int b = 0;
-        for (int j = 0; j < NUMBER_LENGTH; j++) {
-            if (computerAnswer.get(i) == playerInput.get(j)) {
-                b++;
+    private int ballCount(int findHintComputerIndex) {
+        int countBall = 0;
+        for (int findHintInPlayerIndex = 0; findHintInPlayerIndex < NUMBER_LENGTH; findHintInPlayerIndex++) {
+            if (computerAnswer.get(findHintComputerIndex) == playerInput.get(findHintInPlayerIndex)) {
+                countBall++;
             }
         }
-        return b;
+        return countBall;
     }
 
     private static void isRight() {
@@ -104,11 +104,11 @@ public class Computer {
 
     private static void againOrDone() {
         Scanner scan = new Scanner(System.in);
-        int num = scan.nextInt();
-        if (num == 1) {
+        int playAgainNumber = scan.nextInt();
+        if (playAgainNumber == 1) {
             Computer newComputer = new Computer();
             newComputer.gameStart();
-        } else if (num == 2) {
+        } else if (playAgainNumber == 2) {
             System.exit(0);
         } else {
             System.out.print("wrong number. input again : ");

@@ -32,36 +32,36 @@ public class Player {
         if (!rangeOk(myAnswer) || (!lengthOk(myAnswer)) || (!noSame(myAnswer))) {
             somethingWrong();
         }
-        for (int i = 0; i < myAnswer.length(); i++) {
-            playerAnswer.add(myAnswer.charAt(i));
+        for (int storeNumberIndex = 0; storeNumberIndex < myAnswer.length(); storeNumberIndex++) {
+            playerAnswer.add(myAnswer.charAt(storeNumberIndex));
         }
         return playerAnswer;
     }
 
-    private boolean rangeOk(String s) {
-        char[] c = s.toCharArray();
+    private boolean rangeOk(String myAnswer) {
+        char[] tempMyAnswer = myAnswer.toCharArray();
 
-        for (int i = 0; i < NUMBER_LENGTH; i++) {
-            if ((c[i] < '1') || (c[i] > '9')) {
+        for (int findWrongNumberIndex = 0; findWrongNumberIndex < NUMBER_LENGTH; findWrongNumberIndex++) {
+            if ((tempMyAnswer[findWrongNumberIndex] < '1') || (tempMyAnswer[findWrongNumberIndex] > '9')) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean lengthOk(String s) {
-        if (s.length() != NUMBER_LENGTH) {
+    private boolean lengthOk(String myAnswer) {
+        if (myAnswer.length() != NUMBER_LENGTH) {
             return false;
         }
         return true;
     }
 
-    private boolean noSame(String s) {
-        char[] in = s.toCharArray();
+    private boolean noSame(String myAnswer) {
+        char[] tempMyAnswer = myAnswer.toCharArray();
 
-        for (int i = 0; i < s.length() - 1; i++) {
-            for (int j = i + 1; j < s.length(); j++) {
-                if (in[i] == in[j]) {
+        for (int findSameNumberIndex = 0; findSameNumberIndex < myAnswer.length() - 1; findSameNumberIndex++) {
+            for (int compareSameNumberIndex = findSameNumberIndex + 1; compareSameNumberIndex < myAnswer.length(); compareSameNumberIndex++) {
+                if (tempMyAnswer[findSameNumberIndex] == tempMyAnswer[compareSameNumberIndex]) {
                     return false;
                 }
             }
