@@ -1,5 +1,5 @@
 /*
- * Computer.java            2.1.0       2020-06-07
+ * Computer.java            2.1.1       2020-06-07
  *
  * Copyright (c) 2020 Yeonwoo Cho
  * ComputerScience, ProgrammingLanguage, Java, Seoul, KOREA
@@ -9,6 +9,7 @@
 package com.baseball.yeonwoo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,24 +29,24 @@ public class Computer {
     private static final int FINISH_GAME_STRIKES = 3;
     private static final int COUNT_IS_ZERO = 2;
 
-    protected Player newPlayer;
+    public Player newPlayer;
 
-    ArrayList<Character> computerAnswer = new ArrayList<Character>();
-    ArrayList<Character> playerInput = new ArrayList<Character>();
+    private List<Character> computerAnswer = new ArrayList<Character>();
+    private ArrayList<Character> playerInput = new ArrayList<Character>();
     private Scanner scan = new Scanner(System.in);
 
-    protected Computer() {
+    public Computer() {
         newPlayer = new Player();
     }
 
-    protected void gameStart() {    //처음 시작
+    public void gameStart() {    //처음 시작
         makeAnswer();
     }
 
     private void makeAnswer() {
         String currentNumber = "";
         Random random = new Random();
-        for (int generatingNumberIndex = INITIALIZE; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
+        for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
             String number = Integer.toString(random.nextInt(10));
             if (number.equals("0")) {
                 generatingNumberIndex--;
@@ -57,7 +58,7 @@ public class Computer {
                 }
             }
         }
-        for (int storeNumberIndex = INITIALIZE; storeNumberIndex < currentNumber.length(); storeNumberIndex++) {
+        for (int storeNumberIndex = 0; storeNumberIndex < currentNumber.length(); storeNumberIndex++) {
             computerAnswer.add(currentNumber.charAt(storeNumberIndex));
         }
         getNewInput();
@@ -71,7 +72,7 @@ public class Computer {
     private void printHint() {
         int strike = INITIALIZE;
         int ball = INITIALIZE;
-        for (int findHintIndex = INITIALIZE; findHintIndex < NUMBER_LENGTH; findHintIndex++) {
+        for (int findHintIndex = 0; findHintIndex < NUMBER_LENGTH; findHintIndex++) {
             if (computerAnswer.get(findHintIndex) == playerInput.get(findHintIndex)) {
                 strike++;
             } else {
@@ -97,7 +98,7 @@ public class Computer {
 
     private int countBall(int findHintComputerIndex) {
         int countBall = INITIALIZE;
-        for (int findHintInPlayerIndex = INITIALIZE; findHintInPlayerIndex < NUMBER_LENGTH; findHintInPlayerIndex++) {
+        for (int findHintInPlayerIndex = 0; findHintInPlayerIndex < NUMBER_LENGTH; findHintInPlayerIndex++) {
             if (computerAnswer.get(findHintComputerIndex) == playerInput.get(findHintInPlayerIndex)) {
                 countBall++;
             }
