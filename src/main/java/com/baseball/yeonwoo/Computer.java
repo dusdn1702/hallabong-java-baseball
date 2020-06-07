@@ -22,11 +22,14 @@ import java.util.Scanner;
 
 public class Computer {
     public static final int NUMBER_LENGTH = 3;
-
-    public Player newPlayer;
+    protected Player newPlayer;
 
     ArrayList<Character> computerAnswer = new ArrayList<Character>();     //컴퓨터가 만든 답
     ArrayList<Character> playerInput = new ArrayList<Character>();      //게임하는 사람이 추측한 입력 값
+
+    protected Computer(){
+        newPlayer = new Player();
+    }
 
     protected void gameStart() {    //처음 시작
         makeAnswer();
@@ -37,7 +40,7 @@ public class Computer {
         Random random = new Random();
         for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
             String number = Integer.toString(random.nextInt(10));
-            if (!number.equals(0)) {
+            if (!number.equals('0')) {
                 if (!currentNumber.contains(number)) {
                     currentNumber += number;
                 } else {
@@ -54,7 +57,6 @@ public class Computer {
     }
 
     private void newGame() {  //새롭게 입력받는 부분
-        newPlayer = new Player();
         playerInput = newPlayer.inputAnswer();
         printHint();
     }

@@ -21,14 +21,16 @@ import java.util.Scanner;
 
 public class Player {
     public static final int NUMBER_LENGTH = 3;
-    String myAnswer = "";
 
     ArrayList<Character> playerAnswer = new ArrayList<Character>();
     Scanner scan = new Scanner(System.in);
 
     protected ArrayList<Character> inputAnswer() {
-        System.out.print("input three numbers : ");
+        String myAnswer = "";
+        playerAnswer.clear();
+
         myAnswer = scan.nextLine();
+        System.out.print("input three numbers : ");
         if (!rangeOk(myAnswer) || (!lengthOk(myAnswer)) || (!noSame(myAnswer))) {
             somethingWrong();
         }
