@@ -25,7 +25,7 @@ public class Player {
     String myAnswer = "";
 
     ArrayList<Character> playerAnswer = new ArrayList<Character>();
-    Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
 
     protected ArrayList<Character> inputAnswer() {
         playerAnswer.clear();

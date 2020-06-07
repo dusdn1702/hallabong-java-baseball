@@ -26,6 +26,7 @@ public class Computer {
 
     ArrayList<Character> computerAnswer = new ArrayList<Character>();     //컴퓨터가 만든 답
     ArrayList<Character> playerInput = new ArrayList<Character>();      //게임하는 사람이 추측한 입력 값
+    private Scanner scan = new Scanner(System.in);
 
     protected Computer(){
         newPlayer = new Player();
@@ -98,14 +99,13 @@ public class Computer {
         return countBall;
     }
 
-    private static void isRight() {
+    private void isRight() {
         System.out.println("You Win! Game Finish");
         System.out.print("if you want restart-> 1 done -> 2 : ");
         playAgainOrDone();
     }
 
-    private static void playAgainOrDone() {
-        Scanner scan = new Scanner(System.in);
+    private void playAgainOrDone() {
         int playAgainNumber = scan.nextInt();
         if (playAgainNumber == 1) {
             Computer newComputer = new Computer();
