@@ -1,5 +1,5 @@
 /*
- * Computer.java            2.0       2020-06-06
+ * Computer.java            2.1.0       2020-06-07
  *
  * Copyright (c) 2020 Yeonwoo Cho
  * ComputerScience, ProgrammingLanguage, Java, Seoul, KOREA
@@ -17,7 +17,7 @@ import java.util.Scanner;
  * 게임을 진행하는 클래스
  *
  * @author 조연우
- * @version 2.0     2020년 6월 6일
+ * @version 2.1     2020년 6월 7일
  */
 
 public class Computer {
@@ -41,14 +41,14 @@ public class Computer {
         Random random = new Random();
         for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
             String number = Integer.toString(random.nextInt(10));
-            if (!number.equals(0)) {
+            if (number.equals("0")){
+                generatingNumberIndex--;
+            } else {
                 if (!currentNumber.contains(number)) {
                     currentNumber += number;
                 } else {
                     generatingNumberIndex--;
                 }
-            } else {
-                generatingNumberIndex--;
             }
         }
         for (int storeNumberIndex = 0; storeNumberIndex < currentNumber.length(); storeNumberIndex++) {

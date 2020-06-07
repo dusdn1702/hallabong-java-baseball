@@ -1,5 +1,5 @@
 /*
- * Player.java            2.0       2020-06-06
+ * Player.java            2.1.0       2020-06-07
  *
  * Copyright (c) 2020 Yeonwoo Cho
  * ComputerScience, ProgrammingLanguage, Java, Seoul, KOREA
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * 게임을 하는 클래스
  *
  * @author 조연우
- * @version 2.0     2020년 6월 6일
+ * @version 2.1     2020년 6월 7일
  */
 
 public class Player {
