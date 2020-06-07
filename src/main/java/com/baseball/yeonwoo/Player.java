@@ -22,17 +22,19 @@ import java.util.Scanner;
 public class Player {
     public static final int NUMBER_LENGTH = 3;
 
+    String myAnswer = "";
+
     ArrayList<Character> playerAnswer = new ArrayList<Character>();
     Scanner scan = new Scanner(System.in);
 
     protected ArrayList<Character> inputAnswer() {
-        String myAnswer = "";
         playerAnswer.clear();
 
-        myAnswer = scan.nextLine();
         System.out.print("input three numbers : ");
-        if (!rangeOk(myAnswer) || (!lengthOk(myAnswer)) || (!noSame(myAnswer))) {
-            somethingWrong();
+        myAnswer = scan.nextLine();
+
+        if (isInvalidRange(myAnswer) || (isInvalidLength(myAnswer)) || (isDuplication(myAnswer))) {
+            isSomethingWrong();
         }
         for (int storeNumberIndex = 0; storeNumberIndex < myAnswer.length(); storeNumberIndex++) {
             playerAnswer.add(myAnswer.charAt(storeNumberIndex));
@@ -40,38 +42,38 @@ public class Player {
         return playerAnswer;
     }
 
-    private boolean rangeOk(String myAnswer) {
+    private boolean isInvalidRange(String myAnswer) {
         char[] tempMyAnswer = myAnswer.toCharArray();
 
         for (int findWrongNumberIndex = 0; findWrongNumberIndex < NUMBER_LENGTH; findWrongNumberIndex++) {
             if ((tempMyAnswer[findWrongNumberIndex] < '1') || (tempMyAnswer[findWrongNumberIndex] > '9')) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-    private boolean lengthOk(String myAnswer) {
+    private boolean isInvalidLength(String myAnswer) {
         if (myAnswer.length() != NUMBER_LENGTH) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
-    private boolean noSame(String myAnswer) {
+    private boolean isDuplication(String myAnswer) {
         char[] tempMyAnswer = myAnswer.toCharArray();
 
         for (int findSameNumberIndex = 0; findSameNumberIndex < myAnswer.length() - 1; findSameNumberIndex++) {
             for (int compareSameNumberIndex = findSameNumberIndex + 1; compareSameNumberIndex < myAnswer.length(); compareSameNumberIndex++) {
                 if (tempMyAnswer[findSameNumberIndex] == tempMyAnswer[compareSameNumberIndex]) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
-    private void somethingWrong() {
+    private void isSomethingWrong() {
         System.out.println("input again");
         scan = new Scanner(System.in);
         inputAnswer();
