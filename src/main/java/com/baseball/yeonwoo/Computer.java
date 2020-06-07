@@ -21,14 +21,20 @@ import java.util.Scanner;
  */
 
 public class Computer {
-    public static final int NUMBER_LENGTH = 3;
+    private static final int NUMBER_LENGTH = 3;
+    private static final int INITIALIZE = 0;
+    private static final int PLAY_AGAIN = 1;
+    private static final int GAME_DONE = 2;
+    private static final int FINISH_GAME_STRIKES = 3;
+    private static final int COUNT_IS_ZERO = 2;
+
     protected Player newPlayer;
 
-    ArrayList<Character> computerAnswer = new ArrayList<Character>();     //컴퓨터가 만든 답
-    ArrayList<Character> playerInput = new ArrayList<Character>();      //게임하는 사람이 추측한 입력 값
+    ArrayList<Character> computerAnswer = new ArrayList<Character>();
+    ArrayList<Character> playerInput = new ArrayList<Character>();
     private Scanner scan = new Scanner(System.in);
 
-    protected Computer(){
+    protected Computer() {
         newPlayer = new Player();
     }
 
@@ -39,9 +45,9 @@ public class Computer {
     private void makeAnswer() {
         String currentNumber = "";
         Random random = new Random();
-        for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
+        for (int generatingNumberIndex = INITIALIZE; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
             String number = Integer.toString(random.nextInt(10));
-            if (number.equals("0")){
+            if (number.equals("0")) {
                 generatingNumberIndex--;
             } else {
                 if (!currentNumber.contains(number)) {
@@ -51,36 +57,36 @@ public class Computer {
                 }
             }
         }
-        for (int storeNumberIndex = 0; storeNumberIndex < currentNumber.length(); storeNumberIndex++) {
+        for (int storeNumberIndex = INITIALIZE; storeNumberIndex < currentNumber.length(); storeNumberIndex++) {
             computerAnswer.add(currentNumber.charAt(storeNumberIndex));
         }
         getNewInput();
     }
 
-    private void getNewInput() {  //새롭게 입력받는 부분
+    private void getNewInput() {
         playerInput = newPlayer.inputAnswer();
         printHint();
     }
 
-    private void printHint() {    //입력에 대한 힌트 계산, 출력
-        int strike = 0;
-        int ball = 0;
-        for (int findHintIndex = 0; findHintIndex < NUMBER_LENGTH; findHintIndex++) {
+    private void printHint() {
+        int strike = INITIALIZE;
+        int ball = INITIALIZE;
+        for (int findHintIndex = INITIALIZE; findHintIndex < NUMBER_LENGTH; findHintIndex++) {
             if (computerAnswer.get(findHintIndex) == playerInput.get(findHintIndex)) {
                 strike++;
             } else {
                 ball += countBall(findHintIndex);
             }
         }
-        if (strike == 3) {
+        if (strike == FINISH_GAME_STRIKES) {
             isRight();
-        } else if ((ball == 0) && (strike == 0)) {
+        } else if ((ball == COUNT_IS_ZERO) && (strike == COUNT_IS_ZERO)) {
             System.out.println("nothing");
             getNewInput();
-        } else if (strike == 0) {
+        } else if (strike == COUNT_IS_ZERO) {
             System.out.println(ball + "ball");
             getNewInput();
-        } else if (ball == 0) {
+        } else if (ball == COUNT_IS_ZERO) {
             System.out.println(strike + "strike");
             getNewInput();
         } else {
@@ -90,8 +96,8 @@ public class Computer {
     }
 
     private int countBall(int findHintComputerIndex) {
-        int countBall = 0;
-        for (int findHintInPlayerIndex = 0; findHintInPlayerIndex < NUMBER_LENGTH; findHintInPlayerIndex++) {
+        int countBall = INITIALIZE;
+        for (int findHintInPlayerIndex = INITIALIZE; findHintInPlayerIndex < NUMBER_LENGTH; findHintInPlayerIndex++) {
             if (computerAnswer.get(findHintComputerIndex) == playerInput.get(findHintInPlayerIndex)) {
                 countBall++;
             }
@@ -101,16 +107,16 @@ public class Computer {
 
     private void isRight() {
         System.out.println("You Win! Game Finish");
-        System.out.print("if you want restart-> 1 done -> 2 : ");
+        System.out.print("if you want restart-> " + PLAY_AGAIN + " done -> " + GAME_DONE + " : ");
         playAgainOrDone();
     }
 
     private void playAgainOrDone() {
         int playAgainNumber = scan.nextInt();
-        if (playAgainNumber == 1) {
+        if (playAgainNumber == PLAY_AGAIN) {
             Computer newComputer = new Computer();
             newComputer.gameStart();
-        } else if (playAgainNumber == 2) {
+        } else if (playAgainNumber == GAME_DONE) {
             System.exit(0);
         } else {
             System.out.print("wrong number. input again : ");

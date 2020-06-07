@@ -12,8 +12,8 @@ package com.baseball.yeonwoo;
  * Main.class
  * 메인 클래스
  *
- * @version     1.0     2020년 6월 1일
- * @author      조연우
+ * @author 조연우
+ * @version 1.0     2020년 6월 1일
  */
 public class Main {
     public static void main(String[] args) {
