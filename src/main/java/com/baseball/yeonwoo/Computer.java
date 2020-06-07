@@ -46,17 +46,17 @@ public class Computer {
     }
 
     private void makeAnswer() {
-        String currentNumber = "";
+        StringBuilder currentNumber = new StringBuilder();
         Random random = new Random();
         for (int generatingNumberIndex = 0; generatingNumberIndex < NUMBER_LENGTH; generatingNumberIndex++) {
             String number = Integer.toString(random.nextInt(BOUNDARY_NUMBER));
             if (number.equals((char)NO_ZERO)) {
                 generatingNumberIndex--;
             } else {
-                if (!currentNumber.contains(number)) {
-                    currentNumber += number;
-                } else {
+                if (currentNumber.toString().contains(number)) {
                     generatingNumberIndex--;
+                } else {
+                    currentNumber.append(number);
                 }
             }
         }
